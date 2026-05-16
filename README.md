@@ -96,9 +96,9 @@ See `docs/REPRODUCIBILITY.md`. The compiled paper PDF is in
 ## Citation
 
 ```bibtex
-@inproceedings{yourname2026wildlife,
+@inproceedings{deepak2026wildlife,
   title     = {Matching the Baseline, and Why That Is Worth Writing About: A Post-Mortem of an AnimalCLEF 2026 Re-Identification Pipeline},
-  author    = {[Your Full Name]},
+  author    = {Deepak Swaroop},
   booktitle = {CLEF 2026 Working Notes},
   publisher = {CEUR Workshop Proceedings},
   year      = {2026}
