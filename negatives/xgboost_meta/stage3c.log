@@ -1,0 +1,42 @@
+13:52:00 INFO	loaded model: /home/prouser1/Downloads/AnimalCLEF/pipeline_v5/artifacts/models/stage3b_xgboost.json
+13:52:00 INFO	test pair features: (124750, 15)
+13:52:00 INFO	[start]    XGBoost predict on test pairs
+13:52:00 INFO	[done]     XGBoost predict on test pairs in 0.1s
+13:52:00 INFO	test probs: shape=(124750,), min=0.0000, max=1.0000, mean=0.0317
+13:52:00 INFO	high-prob pairs (>0.5): 2127
+13:52:00 INFO	high-prob pairs (>0.8): 1238
+13:52:00 INFO	[saved]    stage3c_xgboost_sim.npy  shape=(500, 500)  dtype=float32  (1.0 MB)
+13:52:00 INFO	
+13:52:00 INFO	Tuning threshold on val pair probabilities...
+13:52:01 INFO	val probs vs labels: high-prob accuracy = 0.9951
+13:52:01 INFO	Threshold sweep on full val:
+13:52:01 INFO	  t=0.05  n_clusters= 136  ARI=0.9466 ← best
+13:52:01 INFO	  t=0.10  n_clusters= 116  ARI=0.9592 ← best
+13:52:01 INFO	  t=0.15  n_clusters= 107  ARI=0.9665 ← best
+13:52:01 INFO	  t=0.20  n_clusters=  98  ARI=0.9806 ← best
+13:52:01 INFO	  t=0.25  n_clusters=  94  ARI=0.9819 ← best
+13:52:01 INFO	  t=0.30  n_clusters=  86  ARI=0.9864 ← best
+13:52:01 INFO	  t=0.35  n_clusters=  81  ARI=0.9884 ← best
+13:52:01 INFO	  t=0.40  n_clusters=  77  ARI=0.9903 ← best
+13:52:01 INFO	  t=0.45  n_clusters=  71  ARI=0.9921 ← best
+13:52:01 INFO	  t=0.50  n_clusters=  69  ARI=0.9929 ← best
+13:52:01 INFO	  t=0.55  n_clusters=  67  ARI=0.9916
+13:52:01 INFO	  t=0.60  n_clusters=  66  ARI=0.9921
+13:52:01 INFO	  t=0.65  n_clusters=  64  ARI=0.9921
+13:52:01 INFO	  t=0.70  n_clusters=  64  ARI=0.9921
+13:52:01 INFO	  t=0.75  n_clusters=  62  ARI=0.9877
+13:52:01 INFO	  t=0.80  n_clusters=  59  ARI=0.9809
+13:52:01 INFO	  t=0.85  n_clusters=  58  ARI=0.9642
+13:52:01 INFO	  t=0.90  n_clusters=  45  ARI=0.8844
+13:52:01 INFO	BEST: t=0.5, val_ari=0.9929
+13:52:01 INFO	test: 500 → 149 clusters
+13:52:01 INFO	[written]  submission stage3c_xgboost_cluster.csv  (2409 rows)
+13:52:01 INFO	           cluster_SeaTurtleID2022_*  500 images, 149 unique clusters
+13:52:01 INFO	           cluster_TexasHornedLizards_*  274 images, 274 unique clusters
+13:52:01 INFO	           cluster_LynxID2025_*  946 images, 946 unique clusters
+13:52:01 INFO	           cluster_SalamanderID2025_*  689 images, 689 unique clusters
+13:52:01 INFO	Submission: /home/prouser1/Downloads/AnimalCLEF/pipeline_v5/submission/stage3c_xgboost_cluster.csv
+13:52:01 INFO	Val ARI: 0.9929
+13:52:01 INFO	Decision rule:
+13:52:01 INFO	  Kaggle >= 0.25 → XGBoost helps, proceed to stage 4 ensemble
+13:52:01 INFO	  Kaggle < 0.25 → Stage 4 may not help much; consider stopping

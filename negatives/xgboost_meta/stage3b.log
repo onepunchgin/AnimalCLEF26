@@ -1,0 +1,40 @@
+13:51:49 INFO	X: (841753, 15), y: (841753,), pos rate: 2.941%
+13:51:49 INFO	scale_pos_weight = 33.0
+13:51:49 INFO	params: {'objective': 'binary:logistic', 'eval_metric': 'aucpr', 'max_depth': 6, 'learning_rate': 0.05, 'subsample': 0.8, 'colsample_bytree': 0.8, 'scale_pos_weight': 32.99923257129009, 'tree_method': 'hist', 'device': 'cuda'}
+13:51:49 INFO	[start]    XGBoost training
+[0]	val-aucpr:0.95172
+[50]	val-aucpr:0.96468
+[100]	val-aucpr:0.96729
+[150]	val-aucpr:0.96916
+[200]	val-aucpr:0.97167
+[250]	val-aucpr:0.97352
+[300]	val-aucpr:0.97447
+[350]	val-aucpr:0.97546
+[400]	val-aucpr:0.97599
+[450]	val-aucpr:0.97663
+[499]	val-aucpr:0.97701
+13:51:52 INFO	[done]     XGBoost training in 3.0s
+13:51:52 INFO	Best iteration from early stopping: 499
+13:51:52 INFO	Retraining final model on full dataset...
+13:51:55 INFO	model saved: /home/prouser1/Downloads/AnimalCLEF/pipeline_v5/artifacts/models/stage3b_xgboost.json
+13:51:55 INFO	
+13:51:55 INFO	=== CV evaluation (3-fold on val) ===
+13:51:56 INFO	  fold 0: AUC=0.9968, AUPRC=0.9745
+13:51:57 INFO	  fold 1: AUC=0.9963, AUPRC=0.9727
+13:51:58 INFO	  fold 2: AUC=0.9959, AUPRC=0.9710
+13:51:58 INFO	  mean AUC: 0.9963 ± 0.0004
+13:51:58 INFO	  mean AUPRC: 0.9727 ± 0.0014
+13:51:58 INFO	
+13:51:58 INFO	Feature importance (top 10 by gain):
+13:51:58 INFO	  sim_arcface_v2: 4776.50
+13:51:58 INFO	  sim_megad: 1611.54
+13:51:58 INFO	  sim_range: 449.64
+13:51:58 INFO	  sim_miew: 359.83
+13:51:58 INFO	  sim_mean: 354.14
+13:51:58 INFO	  sim_dinov2: 219.60
+13:51:58 INFO	  sim_max: 162.43
+13:51:58 INFO	  sim_miew_masked: 142.88
+13:51:58 INFO	  rank_min_norm: 135.06
+13:51:58 INFO	  sim_std: 105.38
+13:51:58 INFO	
+13:51:58 INFO	Stage 3b done. Next: stage3c_apply_cluster.py

@@ -1,0 +1,42 @@
+13:51:46 INFO	============================================================
+13:51:46 INFO	Val pair features: 1298 images = 841753 pairs
+13:51:46 INFO	============================================================
+13:51:46 INFO	  loaded megad: (1298, 1536)
+13:51:46 INFO	  loaded miew: (1298, 2152)
+13:51:46 INFO	  loaded dinov2: (1298, 1024)
+13:51:46 INFO	  loaded arcface_v2: (1298, 1536)
+13:51:46 INFO	  loaded megad_masked: (1298, 1536)
+13:51:46 INFO	  loaded miew_masked: (1298, 2152)
+13:51:46 INFO	  loaded stage2_arcface: (1298, 1536)
+13:51:46 INFO	[start]    build val features
+13:51:47 INFO	[done]     build val features in 0.5s
+13:51:47 INFO	  val features: (841753, 15), n_features=15
+13:51:47 INFO	  positive pairs: 24758/841753 (2.94%)
+13:51:47 INFO	[saved]    val_pair_features.npy  shape=(841753, 15)  dtype=float32  (50.5 MB)
+13:51:47 INFO	[saved]    val_pair_labels.npy  shape=(841753,)  dtype=int32  (3.4 MB)
+13:51:47 INFO	
+13:51:47 INFO	============================================================
+13:51:47 INFO	Test pair features: 500 images = 124750 pairs
+13:51:47 INFO	============================================================
+13:51:47 INFO	  loaded megad: (500, 1536)
+13:51:47 INFO	  loaded miew: (500, 2152)
+13:51:47 INFO	  loaded dinov2: (500, 1024)
+13:51:47 INFO	  loaded arcface_v2: (500, 1536)
+13:51:47 INFO	  loaded megad_masked: (500, 1536)
+13:51:47 INFO	  loaded miew_masked: (500, 2152)
+13:51:47 INFO	  loaded stage2_arcface: (500, 1536)
+13:51:47 INFO	  loaded wildfusion: (500, 500)
+13:51:47 INFO	Common sim sources: ['arcface_v2', 'dinov2', 'megad', 'megad_masked', 'miew', 'miew_masked', 'stage2_arcface']
+13:51:47 INFO	[start]    rebuild val with common sources
+13:51:47 INFO	[saved]    val_pair_features.npy  shape=(841753, 15)  dtype=float32  (50.5 MB)
+13:51:47 INFO	[done]     rebuild val with common sources in 0.5s
+13:51:47 INFO	[start]    build test features
+13:51:47 INFO	[done]     build test features in 0.1s
+13:51:47 INFO	  test features: (124750, 15)
+13:51:47 INFO	[saved]    test_pair_features.npy  shape=(124750, 15)  dtype=float32  (7.5 MB)
+13:51:47 INFO	feature names saved
+13:51:47 INFO	
+13:51:47 INFO	Pair features built: 15 features each
+13:51:47 INFO	  val: (841753, 15), labels: 24758 pos / 841753 total
+13:51:47 INFO	  test: (124750, 15)
+13:51:47 INFO	Next: stage3b_train_xgboost.py
