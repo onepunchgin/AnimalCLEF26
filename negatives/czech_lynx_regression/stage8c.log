@@ -1,0 +1,112 @@
+03:10:33 INFO	======================================================================
+03:10:33 INFO	Stage 8c -- Lynx ArcFace re-training (LynxID2025 + CzechLynx)
+03:10:33 INFO	======================================================================
+03:10:33 INFO	device=cuda  amp=True  subcenter=True
+03:10:34 INFO	[LynxID2025] train rows: 2957 (77 ids) -> 2951 (71 ids with >= 2 imgs)
+03:10:34 INFO	LynxID2025 identity split: 57 train ids / 14 val ids  (no overlap)
+03:10:34 INFO	  comp train: 2433 images, 57 ids
+03:10:34 INFO	  comp val:   518 images, 14 ids
+03:10:34 INFO	Discovering CzechLynx layout under /home/prouser1/Downloads/AnimalCLEF/data/czech_lynx...
+03:10:34 INFO	  contents: ['CzechLynxDataset-Metadata-Real.csv', 'CzechLynx', 'CzechLynxDataset-Metadata-Synthetic.csv', 'CzechLynx_Synthetic']
+03:10:36 INFO	  directory-based: 79760 images, 2 identities
+03:10:36 INFO	CzechLynx: 79760 images, 2 identities
+03:10:36 INFO	  after dropping czech singletons: 79760 images, 2 ids (0 rows dropped)
+03:10:36 INFO	Combined train: 82193 images, 59 identities  (comp=2433, czech=79760)
+03:10:36 INFO	num_classes (combined train) = 59
+03:10:37 INFO	stage7a baseline val ARI (from ckpt): 0.4344
+03:10:37 INFO	  PK sampler: P=8 K=4  (4/59 train ids have < K images, sampled with replacement)
+03:10:37 INFO	  val: 518 images, 14 unique labels
+03:10:41 INFO	Loading pretrained weights from Hugging Face hub (BVRA/MegaDescriptor-L-384)
+03:10:42 INFO	
+03:10:42 INFO	Pre-train val ARI (pretrained MegaD, no fine-tune)...
+03:10:42 INFO	[start]    pre-train val embedding extraction
+03:11:01 INFO	[done]     pre-train val embedding extraction in 18.2s
+03:11:01 INFO	  pretrained ARI = 0.2828 @ t=0.775
+03:11:01 INFO	
+03:11:01 INFO	curriculum: 5 phases, total 30 epochs
+03:11:01 INFO	
+03:11:01 INFO	======================================================================
+03:11:01 INFO	phase0_head: 3 ep, bb=0%, lr_h=1e-03, lr_b=0e+00, s=16->16, m=0.0->0.0
+03:11:01 INFO	======================================================================
+03:11:20 INFO	  [ep  0] phase0_head loss=3.398 acc=0.232 s=16 m=0.00 (20s)
+03:11:39 INFO	    [val @ ep 0] ARI=0.2828 @ t=0.775  (stage7a baseline 0.4344) (19s)
+03:11:58 INFO	  [ep  1] phase0_head loss=2.806 acc=0.403 s=16 m=0.00 (19s)
+03:12:17 INFO	  [ep  2] phase0_head loss=2.521 acc=0.460 s=16 m=0.00 (19s)
+03:12:35 INFO	    [val @ ep 2] ARI=0.2828 @ t=0.775  (stage7a baseline 0.4344) (18s)
+03:12:35 INFO	
+03:12:35 INFO	======================================================================
+03:12:35 INFO	phase1_top10: 8 ep, bb=10%, lr_h=1e-03, lr_b=1e-05, s=16->32, m=0.0->0.1
+03:12:35 INFO	======================================================================
+03:12:56 INFO	  [ep  3] phase1_top10 loss=2.350 acc=0.516 s=16 m=0.00 (21s)
+03:13:17 INFO	  [ep  4] phase1_top10 loss=2.477 acc=0.454 s=18 m=0.01 (20s)
+03:13:35 INFO	    [val @ ep 4] ARI=0.2592 @ t=0.850  (stage7a baseline 0.4344) (18s)
+03:13:55 INFO	  [ep  5] phase1_top10 loss=2.302 acc=0.496 s=21 m=0.03 (20s)
+03:14:16 INFO	  [ep  6] phase1_top10 loss=2.251 acc=0.514 s=23 m=0.04 (21s)
+03:14:35 INFO	    [val @ ep 6] ARI=0.3642 @ t=0.875  (stage7a baseline 0.4344) (19s)
+03:14:35 INFO	    [ckpt] saved (val_ARI=0.3642)
+03:14:56 INFO	  [ep  7] phase1_top10 loss=2.308 acc=0.497 s=25 m=0.06 (20s)
+03:15:17 INFO	  [ep  8] phase1_top10 loss=2.300 acc=0.495 s=27 m=0.07 (21s)
+03:15:35 INFO	    [val @ ep 8] ARI=0.3798 @ t=0.900  (stage7a baseline 0.4344) (18s)
+03:15:36 INFO	    [ckpt] saved (val_ARI=0.3798)
+03:15:56 INFO	  [ep  9] phase1_top10 loss=2.542 acc=0.445 s=30 m=0.09 (20s)
+03:16:17 INFO	  [ep 10] phase1_top10 loss=2.713 acc=0.425 s=32 m=0.10 (21s)
+03:16:35 INFO	    [val @ ep 10] ARI=0.4166 @ t=0.900  (stage7a baseline 0.4344) (19s)
+03:16:36 INFO	    [ckpt] saved (val_ARI=0.4166)
+03:16:36 INFO	
+03:16:36 INFO	======================================================================
+03:16:36 INFO	phase2_top30: 12 ep, bb=30%, lr_h=5e-04, lr_b=1e-05, s=32->64, m=0.1->0.3
+03:16:36 INFO	======================================================================
+03:17:02 INFO	  [ep 11] phase2_top30 loss=2.564 acc=0.451 s=32 m=0.10 (26s)
+03:17:28 INFO	  [ep 12] phase2_top30 loss=3.139 acc=0.362 s=35 m=0.12 (26s)
+03:17:47 INFO	    [val @ ep 12] ARI=0.3743 @ t=0.900  (stage7a baseline 0.4344) (19s)
+03:18:13 INFO	  [ep 13] phase2_top30 loss=3.520 acc=0.339 s=38 m=0.14 (26s)
+03:18:40 INFO	  [ep 14] phase2_top30 loss=3.919 acc=0.316 s=41 m=0.15 (26s)
+03:18:58 INFO	    [val @ ep 14] ARI=0.4289 @ t=0.900  (stage7a baseline 0.4344) (18s)
+03:18:59 INFO	    [ckpt] saved (val_ARI=0.4289)
+03:19:26 INFO	  [ep 15] phase2_top30 loss=4.360 acc=0.307 s=44 m=0.17 (27s)
+03:19:51 INFO	  [ep 16] phase2_top30 loss=5.065 acc=0.259 s=47 m=0.19 (25s)
+03:20:10 INFO	    [val @ ep 16] ARI=0.4233 @ t=0.900  (stage7a baseline 0.4344) (19s)
+03:20:36 INFO	  [ep 17] phase2_top30 loss=5.630 acc=0.241 s=49 m=0.21 (26s)
+03:21:02 INFO	  [ep 18] phase2_top30 loss=6.091 acc=0.245 s=52 m=0.23 (26s)
+03:21:20 INFO	    [val @ ep 18] ARI=0.4144 @ t=0.900  (stage7a baseline 0.4344) (18s)
+03:21:46 INFO	  [ep 19] phase2_top30 loss=6.948 acc=0.211 s=55 m=0.25 (25s)
+03:22:11 INFO	  [ep 20] phase2_top30 loss=8.011 acc=0.182 s=58 m=0.26 (25s)
+03:22:30 INFO	    [val @ ep 20] ARI=0.4424 @ t=0.900  (stage7a baseline 0.4344) (19s)
+03:22:30 INFO	    [ckpt] saved (val_ARI=0.4424)
+03:22:56 INFO	  [ep 21] phase2_top30 loss=8.735 acc=0.170 s=61 m=0.28 (26s)
+03:23:22 INFO	  [ep 22] phase2_top30 loss=9.963 acc=0.146 s=64 m=0.30 (26s)
+03:23:41 INFO	    [val @ ep 22] ARI=0.4539 @ t=0.900  (stage7a baseline 0.4344) (19s)
+03:23:41 INFO	    [ckpt] saved (val_ARI=0.4539)
+03:23:41 INFO	
+03:23:41 INFO	======================================================================
+03:23:41 INFO	phase3_all: 5 ep, bb=100%, lr_h=1e-04, lr_b=3e-06, s=64->64, m=0.3->0.3
+03:23:41 INFO	======================================================================
+/home/prouser1/miniforge3/envs/animalclef_v4/lib/python3.10/site-packages/torch/autograd/graph.py:744: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+03:24:32 INFO	  [ep 23] phase3_all loss=9.390 acc=0.169 s=64 m=0.30 (50s)
+03:25:23 INFO	  [ep 24] phase3_all loss=9.779 acc=0.170 s=64 m=0.30 (51s)
+03:25:41 INFO	    [val @ ep 24] ARI=0.4361 @ t=0.900  (stage7a baseline 0.4344) (19s)
+03:26:28 INFO	  [ep 25] phase3_all loss=9.622 acc=0.165 s=64 m=0.30 (47s)
+03:27:17 INFO	  [ep 26] phase3_all loss=9.292 acc=0.187 s=64 m=0.30 (48s)
+03:27:35 INFO	    [val @ ep 26] ARI=0.4824 @ t=0.900  (stage7a baseline 0.4344) (19s)
+03:27:36 INFO	    [ckpt] saved (val_ARI=0.4824)
+03:28:26 INFO	  [ep 27] phase3_all loss=9.060 acc=0.196 s=64 m=0.30 (49s)
+03:28:44 INFO	    [val @ ep 27] ARI=0.3606 @ t=0.900  (stage7a baseline 0.4344) (18s)
+03:28:44 INFO	
+03:28:44 INFO	======================================================================
+03:28:44 INFO	phase4_cool: 2 ep, bb=100%, lr_h=1e-05, lr_b=1e-06, s=64->64, m=0.3->0.3
+03:28:44 INFO	======================================================================
+03:29:31 INFO	  [ep 28] phase4_cool loss=8.970 acc=0.200 s=64 m=0.30 (47s)
+03:29:50 INFO	    [val @ ep 28] ARI=0.3623 @ t=0.900  (stage7a baseline 0.4344) (18s)
+03:30:37 INFO	  [ep 29] phase4_cool loss=9.031 acc=0.206 s=64 m=0.30 (48s)
+03:30:56 INFO	    [val @ ep 29] ARI=0.3845 @ t=0.900  (stage7a baseline 0.4344) (19s)
+03:30:56 INFO	
+03:30:56 INFO	======================================================================
+03:30:56 INFO	FINAL COMPARISON
+03:30:56 INFO	======================================================================
+03:30:56 INFO	EXTENDED MODEL val ARI:  0.4824 @ t=0.900
+03:30:56 INFO	STAGE7A BASELINE val ARI: 0.4344
+03:30:56 INFO	  delta: +0.0480
+03:30:56 INFO	  -> USE extended model (stage8c beats stage7a on the comparable val split)
+03:30:56 INFO	  checkpoint: /home/prouser1/Downloads/AnimalCLEF/pipeline_v5/artifacts/ckpts/stage8c_lynx_extended_best.pth
+03:30:56 INFO	Next: stage8d_recluster_lynx.py
