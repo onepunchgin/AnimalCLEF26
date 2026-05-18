@@ -1,0 +1,119 @@
+00:53:00 INFO	======================================================================
+00:53:00 INFO	Stage 8a -- Turtle ArcFace re-training (extended dataset)
+00:53:00 INFO	======================================================================
+00:53:00 INFO	device=cuda  amp=True  subcenter=True
+00:53:00 INFO	
+00:53:00 INFO	Loading combined turtle training data...
+00:53:00 INFO	  comp SeaTurtleID2022 train: 8729 rows
+00:53:00 INFO	  zakynthos turtles: 160 rows  (0 missing on disk)
+00:53:00 INFO	  amvrakikos turtles: 300 rows  (0 missing on disk)
+00:53:00 INFO	  reunion turtles: 336 rows  (0 missing, 0 bad-date)
+00:53:00 INFO	Combined turtle train: 9525 images, 612 identities  (comp=8729, zak=160, amv=300, reu=336)
+00:53:00 INFO	  identity image-count distribution: min=1, median=8, max=190, singletons=1
+00:53:00 INFO	val (stage2b-comparable): 1298 images, 65 identities
+00:53:00 INFO	train: 9525 images, 612 identities, masked=False
+00:53:01 INFO	stage2b baseline val ARI (from ckpt): 0.6464
+00:53:02 INFO	  PK sampler: P=8 K=4  (32/612 train ids have < K images, sampled with replacement)
+00:53:05 INFO	Loading pretrained weights from Hugging Face hub (BVRA/MegaDescriptor-L-384)
+00:53:07 INFO	
+00:53:07 INFO	Pre-train val ARI (pretrained MegaD, no fine-tune)...
+00:53:07 INFO	[start]    pre-train val embedding extraction
+00:53:41 INFO	[done]     pre-train val embedding extraction in 34.1s
+00:53:41 INFO	  pretrained val ARI = 0.7720
+00:53:41 INFO	
+00:53:41 INFO	curriculum: 5 phases, total 33 epochs
+00:53:41 INFO	
+00:53:41 INFO	======================================================================
+00:53:41 INFO	phase0_head: 3 ep, bb=0%, lr_h=1e-03, lr_b=0e+00, s=16->16, m=0.0->0.0
+00:53:41 INFO	======================================================================
+00:55:27 INFO	  [ep  0] phase0_head loss=4.576 acc=0.458 s=16 m=0.00 (105s)
+00:56:02 INFO	    [val @ ep 0] ARI=0.7720 (stage2b baseline 0.6464) (35s)
+00:57:50 INFO	  [ep  1] phase0_head loss=2.867 acc=0.674 s=16 m=0.00 (108s)
+00:59:35 INFO	  [ep  2] phase0_head loss=2.311 acc=0.761 s=16 m=0.00 (106s)
+01:00:11 INFO	    [val @ ep 2] ARI=0.7720 (stage2b baseline 0.6464) (35s)
+01:00:11 INFO	
+01:00:11 INFO	======================================================================
+01:00:11 INFO	phase1_top10: 8 ep, bb=10%, lr_h=1e-03, lr_b=1e-05, s=16->32, m=0.0->0.1
+01:00:11 INFO	======================================================================
+01:02:09 INFO	  [ep  3] phase1_top10 loss=2.357 acc=0.769 s=16 m=0.00 (118s)
+01:04:02 INFO	  [ep  4] phase1_top10 loss=2.056 acc=0.802 s=18 m=0.01 (113s)
+01:04:37 INFO	    [val @ ep 4] ARI=0.7896 (stage2b baseline 0.6464) (35s)
+01:04:38 INFO	    [ckpt] saved (val_ARI=0.7896)
+01:06:31 INFO	  [ep  5] phase1_top10 loss=1.863 acc=0.819 s=21 m=0.03 (113s)
+01:08:26 INFO	  [ep  6] phase1_top10 loss=1.745 acc=0.838 s=23 m=0.04 (115s)
+01:09:01 INFO	    [val @ ep 6] ARI=0.8017 (stage2b baseline 0.6464) (35s)
+01:09:02 INFO	    [ckpt] saved (val_ARI=0.8017)
+01:10:57 INFO	  [ep  7] phase1_top10 loss=1.685 acc=0.850 s=25 m=0.06 (115s)
+01:12:49 INFO	  [ep  8] phase1_top10 loss=1.652 acc=0.852 s=27 m=0.07 (113s)
+01:13:24 INFO	    [val @ ep 8] ARI=0.8080 (stage2b baseline 0.6464) (34s)
+01:13:25 INFO	    [ckpt] saved (val_ARI=0.8080)
+01:15:16 INFO	  [ep  9] phase1_top10 loss=1.656 acc=0.848 s=30 m=0.09 (112s)
+01:17:07 INFO	  [ep 10] phase1_top10 loss=1.709 acc=0.838 s=32 m=0.10 (111s)
+01:17:41 INFO	    [val @ ep 10] ARI=0.8174 (stage2b baseline 0.6464) (34s)
+01:17:42 INFO	    [ckpt] saved (val_ARI=0.8174)
+01:17:42 INFO	
+01:17:42 INFO	======================================================================
+01:17:42 INFO	phase2_top30: 15 ep, bb=30%, lr_h=5e-04, lr_b=1e-05, s=32->64, m=0.1->0.3
+01:17:42 INFO	======================================================================
+01:20:03 INFO	  [ep 11] phase2_top30 loss=1.674 acc=0.844 s=32 m=0.10 (141s)
+01:22:23 INFO	  [ep 12] phase2_top30 loss=1.670 acc=0.847 s=34 m=0.11 (141s)
+01:22:58 INFO	    [val @ ep 12] ARI=0.8141 (stage2b baseline 0.6464) (34s)
+01:25:18 INFO	  [ep 13] phase2_top30 loss=1.736 acc=0.831 s=37 m=0.13 (141s)
+01:27:37 INFO	  [ep 14] phase2_top30 loss=1.819 acc=0.815 s=39 m=0.14 (139s)
+01:28:12 INFO	    [val @ ep 14] ARI=0.8195 (stage2b baseline 0.6464) (34s)
+01:28:13 INFO	    [ckpt] saved (val_ARI=0.8195)
+01:30:35 INFO	  [ep 15] phase2_top30 loss=1.924 acc=0.795 s=41 m=0.16 (142s)
+01:32:49 INFO	  [ep 16] phase2_top30 loss=2.031 acc=0.782 s=43 m=0.17 (134s)
+01:33:18 INFO	    [val @ ep 16] ARI=0.8257 (stage2b baseline 0.6464) (29s)
+01:33:19 INFO	    [ckpt] saved (val_ARI=0.8257)
+01:35:17 INFO	  [ep 17] phase2_top30 loss=2.154 acc=0.762 s=46 m=0.19 (118s)
+01:37:16 INFO	  [ep 18] phase2_top30 loss=2.236 acc=0.754 s=48 m=0.20 (118s)
+01:37:45 INFO	    [val @ ep 18] ARI=0.8327 (stage2b baseline 0.6464) (30s)
+01:37:46 INFO	    [ckpt] saved (val_ARI=0.8327)
+01:39:46 INFO	  [ep 19] phase2_top30 loss=2.414 acc=0.735 s=50 m=0.21 (120s)
+01:41:43 INFO	  [ep 20] phase2_top30 loss=2.584 acc=0.716 s=53 m=0.23 (117s)
+01:42:12 INFO	    [val @ ep 20] ARI=0.8447 (stage2b baseline 0.6464) (29s)
+01:42:13 INFO	    [ckpt] saved (val_ARI=0.8447)
+01:44:11 INFO	  [ep 21] phase2_top30 loss=2.812 acc=0.690 s=55 m=0.24 (118s)
+01:46:13 INFO	  [ep 22] phase2_top30 loss=3.018 acc=0.674 s=57 m=0.26 (122s)
+01:46:48 INFO	    [val @ ep 22] ARI=0.8422 (stage2b baseline 0.6464) (34s)
+01:49:11 INFO	  [ep 23] phase2_top30 loss=3.204 acc=0.664 s=59 m=0.27 (143s)
+01:51:33 INFO	  [ep 24] phase2_top30 loss=3.439 acc=0.652 s=62 m=0.29 (142s)
+01:52:07 INFO	    [val @ ep 24] ARI=0.8532 (stage2b baseline 0.6464) (34s)
+01:52:08 INFO	    [ckpt] saved (val_ARI=0.8532)
+01:54:31 INFO	  [ep 25] phase2_top30 loss=3.675 acc=0.643 s=64 m=0.30 (143s)
+01:55:05 INFO	    [val @ ep 25] ARI=0.8416 (stage2b baseline 0.6464) (34s)
+01:55:05 INFO	
+01:55:05 INFO	======================================================================
+01:55:05 INFO	phase3_all: 5 ep, bb=100%, lr_h=1e-04, lr_b=3e-06, s=64->64, m=0.3->0.3
+01:55:05 INFO	======================================================================
+/home/prouser1/miniforge3/envs/animalclef_v4/lib/python3.10/site-packages/torch/autograd/graph.py:744: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+01:59:39 INFO	  [ep 26] phase3_all loss=3.594 acc=0.655 s=64 m=0.30 (275s)
+02:00:13 INFO	    [val @ ep 26] ARI=0.8552 (stage2b baseline 0.6464) (34s)
+02:00:14 INFO	    [ckpt] saved (val_ARI=0.8552)
+02:04:52 INFO	  [ep 27] phase3_all loss=3.425 acc=0.674 s=64 m=0.30 (278s)
+02:09:40 INFO	  [ep 28] phase3_all loss=3.322 acc=0.684 s=64 m=0.30 (288s)
+02:10:21 INFO	    [val @ ep 28] ARI=0.8541 (stage2b baseline 0.6464) (42s)
+02:16:59 INFO	  [ep 29] phase3_all loss=3.201 acc=0.692 s=64 m=0.30 (397s)
+02:24:04 INFO	  [ep 30] phase3_all loss=3.142 acc=0.702 s=64 m=0.30 (426s)
+02:24:39 INFO	    [val @ ep 30] ARI=0.8572 (stage2b baseline 0.6464) (34s)
+02:24:39 INFO	    [ckpt] saved (val_ARI=0.8572)
+02:24:39 INFO	
+02:24:39 INFO	======================================================================
+02:24:39 INFO	phase4_cooldown: 2 ep, bb=100%, lr_h=1e-05, lr_b=1e-06, s=64->64, m=0.3->0.3
+02:24:39 INFO	======================================================================
+02:30:37 INFO	  [ep 31] phase4_cooldown loss=3.061 acc=0.709 s=64 m=0.30 (358s)
+02:36:54 INFO	  [ep 32] phase4_cooldown loss=3.041 acc=0.712 s=64 m=0.30 (377s)
+02:37:51 INFO	    [val @ ep 32] ARI=0.8580 (stage2b baseline 0.6464) (57s)
+02:37:52 INFO	    [ckpt] saved (val_ARI=0.8580)
+02:37:52 INFO	
+02:37:52 INFO	======================================================================
+02:37:52 INFO	FINAL COMPARISON
+02:37:52 INFO	======================================================================
+02:37:52 INFO	EXTENDED MODEL val ARI:  0.8580
+02:37:52 INFO	STAGE2B BASELINE val ARI: 0.6464
+02:37:52 INFO	  delta: +0.2116
+02:37:52 INFO	  -> USE extended model  (stage8a beats stage2b on the comparable val split)
+02:37:52 INFO	  checkpoint: /home/prouser1/Downloads/AnimalCLEF/pipeline_v5/artifacts/ckpts/stage8a_turtle_extended_best.pth
+02:37:52 INFO	Next: stage8b_recluster_turtles.py
