@@ -1,0 +1,161 @@
+02:08:13 INFO	======================================================================
+02:08:13 INFO	Stage 8e -- BalearicLizard train + Texas cluster
+02:08:13 INFO	======================================================================
+02:08:13 INFO	BalearicLizard download check: OK (1009 identity dirs in images-segmented)
+02:08:13 INFO	loaded metadata: 4619 rows  unique ids=1009
+02:08:13 INFO	after dropping singletons: 4360 rows  unique ids=750  (dropped 259)
+02:08:13 INFO	identity split: 600 train ids / 150 val ids  (no overlap)
+02:08:13 INFO	  train: 3496 images, 600 ids
+02:08:13 INFO	  val:   864 images, 150 ids
+02:08:13 INFO	num_classes (train) = 600
+02:08:14 INFO	  PK sampler: P=8 K=4  (247/600 train ids have < K images)
+02:08:14 INFO	  val: 864 images, 150 unique labels
+02:08:18 INFO	Loading pretrained weights from Hugging Face hub (BVRA/MegaDescriptor-L-384)
+02:08:20 INFO	
+02:08:20 INFO	Pre-train val ARI (pretrained MegaD, no fine-tune)...
+02:08:20 INFO	[start]    pre-train val embedding extraction
+02:10:21 INFO	[done]     pre-train val embedding extraction in 2.0 min
+02:10:21 INFO	  pretrained ARI = 0.0146 @ t=0.475
+02:10:21 INFO	
+02:10:21 INFO	curriculum: 5 phases, total 23 epochs
+02:10:21 INFO	
+02:10:21 INFO	======================================================================
+02:10:21 INFO	phase0_head: 2 ep, bb=0%, lr_h=1e-03, lr_b=0e+00, s=16->16, m=0.0->0.0
+02:10:21 INFO	======================================================================
+02:11:51 INFO	  [ep  0] phase0_head loss=6.939 acc=0.003 s=16 m=0.00 (90s)
+02:13:51 INFO	    [val @ ep 0] ARI=0.0146 @ t=0.475  (pre-train 0.0146) (120s)
+02:15:21 INFO	  [ep  1] phase0_head loss=6.101 acc=0.025 s=16 m=0.00 (90s)
+02:17:20 INFO	    [val @ ep 1] ARI=0.0146 @ t=0.475  (pre-train 0.0146) (119s)
+02:17:20 INFO	
+02:17:20 INFO	======================================================================
+02:17:20 INFO	phase1_top10: 5 ep, bb=10%, lr_h=1e-03, lr_b=1e-05, s=16->32, m=0.0->0.1
+02:17:20 INFO	======================================================================
+02:18:58 INFO	  [ep  2] phase1_top10 loss=6.268 acc=0.027 s=16 m=0.00 (99s)
+02:20:59 INFO	    [val @ ep 2] ARI=0.0250 @ t=0.700  (pre-train 0.0146) (121s)
+02:21:00 INFO	    [ckpt] saved (val_ARI=0.0250)
+02:22:37 INFO	  [ep  3] phase1_top10 loss=6.090 acc=0.029 s=20 m=0.03 (97s)
+02:24:07 INFO	  [ep  4] phase1_top10 loss=6.182 acc=0.032 s=24 m=0.05 (90s)
+02:26:03 INFO	    [val @ ep 4] ARI=0.0233 @ t=0.575  (pre-train 0.0146) (116s)
+02:27:34 INFO	  [ep  5] phase1_top10 loss=6.426 acc=0.030 s=28 m=0.08 (91s)
+02:29:05 INFO	  [ep  6] phase1_top10 loss=6.889 acc=0.024 s=32 m=0.10 (90s)
+02:30:59 INFO	    [val @ ep 6] ARI=0.0255 @ t=0.700  (pre-train 0.0146) (115s)
+02:31:00 INFO	    [ckpt] saved (val_ARI=0.0255)
+02:31:00 INFO	
+02:31:00 INFO	======================================================================
+02:31:00 INFO	phase2_top30: 10 ep, bb=30%, lr_h=5e-04, lr_b=1e-05, s=32->64, m=0.1->0.3
+02:31:00 INFO	======================================================================
+02:32:55 INFO	  [ep  7] phase2_top30 loss=6.904 acc=0.034 s=32 m=0.10 (114s)
+02:34:49 INFO	  [ep  8] phase2_top30 loss=7.397 acc=0.025 s=36 m=0.12 (114s)
+02:36:44 INFO	    [val @ ep 8] ARI=0.0214 @ t=0.625  (pre-train 0.0146) (115s)
+02:38:16 INFO	  [ep  9] phase2_top30 loss=8.084 acc=0.020 s=39 m=0.14 (92s)
+02:40:02 INFO	  [ep 10] phase2_top30 loss=8.829 acc=0.019 s=43 m=0.17 (106s)
+02:41:58 INFO	    [val @ ep 10] ARI=0.0292 @ t=0.650  (pre-train 0.0146) (116s)
+02:41:59 INFO	    [ckpt] saved (val_ARI=0.0292)
+02:43:36 INFO	  [ep 11] phase2_top30 loss=9.653 acc=0.014 s=46 m=0.19 (97s)
+02:44:36 INFO	  [ep 12] phase2_top30 loss=10.647 acc=0.013 s=50 m=0.21 (60s)
+02:46:13 INFO	    [val @ ep 12] ARI=0.0248 @ t=0.650  (pre-train 0.0146) (96s)
+02:47:13 INFO	  [ep 13] phase2_top30 loss=11.910 acc=0.009 s=53 m=0.23 (61s)
+02:48:14 INFO	  [ep 14] phase2_top30 loss=13.209 acc=0.006 s=57 m=0.26 (61s)
+02:49:50 INFO	    [val @ ep 14] ARI=0.0296 @ t=0.800  (pre-train 0.0146) (96s)
+02:49:51 INFO	    [ckpt] saved (val_ARI=0.0296)
+02:50:53 INFO	  [ep 15] phase2_top30 loss=14.550 acc=0.007 s=60 m=0.28 (61s)
+02:51:53 INFO	  [ep 16] phase2_top30 loss=16.192 acc=0.005 s=64 m=0.30 (61s)
+02:53:29 INFO	    [val @ ep 16] ARI=0.0360 @ t=0.700  (pre-train 0.0146) (96s)
+02:53:30 INFO	    [ckpt] saved (val_ARI=0.0360)
+02:53:30 INFO	
+02:53:30 INFO	======================================================================
+02:53:30 INFO	phase3_all: 4 ep, bb=100%, lr_h=1e-04, lr_b=3e-06, s=64->64, m=0.3->0.3
+02:53:30 INFO	======================================================================
+/home/prouser1/miniforge3/envs/animalclef_v4/lib/python3.10/site-packages/torch/autograd/graph.py:744: UserWarning: Plan failed with a cudnnException: CUDNN_BACKEND_EXECUTION_PLAN_DESCRIPTOR: cudnnFinalize Descriptor Failed cudnn_status: CUDNN_STATUS_NOT_SUPPORTED (Triggered internally at ../aten/src/ATen/native/cudnn/Conv_v8.cpp:919.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+02:55:13 INFO	  [ep 17] phase3_all loss=15.636 acc=0.010 s=64 m=0.30 (103s)
+02:56:56 INFO	  [ep 18] phase3_all loss=15.268 acc=0.011 s=64 m=0.30 (103s)
+02:58:32 INFO	    [val @ ep 18] ARI=0.0298 @ t=0.775  (pre-train 0.0146) (96s)
+03:00:14 INFO	  [ep 19] phase3_all loss=15.009 acc=0.011 s=64 m=0.30 (102s)
+03:01:57 INFO	  [ep 20] phase3_all loss=14.825 acc=0.012 s=64 m=0.30 (102s)
+03:03:33 INFO	    [val @ ep 20] ARI=0.0372 @ t=0.775  (pre-train 0.0146) (96s)
+03:03:34 INFO	    [ckpt] saved (val_ARI=0.0372)
+03:03:34 INFO	
+03:03:34 INFO	======================================================================
+03:03:34 INFO	phase4_cool: 2 ep, bb=100%, lr_h=1e-05, lr_b=1e-06, s=64->64, m=0.3->0.3
+03:03:34 INFO	======================================================================
+03:05:16 INFO	  [ep 21] phase4_cool loss=14.538 acc=0.014 s=64 m=0.30 (102s)
+03:06:59 INFO	  [ep 22] phase4_cool loss=14.574 acc=0.014 s=64 m=0.30 (102s)
+03:08:35 INFO	    [val @ ep 22] ARI=0.0333 @ t=0.775  (pre-train 0.0146) (96s)
+03:08:35 INFO	
+03:08:35 INFO	Done training. Best val ARI: 0.0372 @ t=0.775 (pretrained 0.0146)
+03:08:35 INFO	  improvement: +0.0226
+03:08:35 INFO	  checkpoint: /home/prouser1/Downloads/AnimalCLEF/pipeline_v5/artifacts/ckpts/stage8e_lizard_arcface_best.pth
+03:08:35 INFO	
+03:08:35 INFO	======================================================================
+03:08:35 INFO	Extract embeddings for val + Texas test
+03:08:35 INFO	======================================================================
+03:08:38 INFO	Loading pretrained weights from Hugging Face hub (BVRA/MegaDescriptor-L-384)
+03:08:40 INFO	[start]    extract balearic val embeddings
+03:10:15 INFO	[done]     extract balearic val embeddings in 1.6 min
+03:10:15 INFO	[saved]    stage8e_lizard_balearic_val_emb.npy  shape=(864, 1536)  dtype=float32  (5.3 MB)
+03:10:15 INFO	[saved]    stage8e_lizard_balearic_val_codes.npy  shape=(864,)  dtype=int64  (0.0 MB)
+03:10:15 INFO	TexasHornedLizard test: 274 images
+03:10:15 INFO	[start]    extract texas test embeddings
+03:10:30 INFO	[done]     extract texas test embeddings in 14.9s
+03:10:30 INFO	[saved]    stage8e_lizard_texas_test_emb.npy  shape=(274, 1536)  dtype=float32  (1.7 MB)
+03:10:30 INFO	
+03:10:30 INFO	======================================================================
+03:10:30 INFO	Threshold calibration on BalearicLizard val
+03:10:30 INFO	======================================================================
+03:10:30 INFO	[start]    val threshold sweep
+03:10:31 INFO	[done]     val threshold sweep in 0.3s
+03:10:31 INFO	val ARI sweep:
+03:10:31 INFO	  t=0.2000  ARI=+0.0005  n_clusters= 863  singletons= 862
+03:10:31 INFO	  t=0.2250  ARI=+0.0005  n_clusters= 863  singletons= 862
+03:10:31 INFO	  t=0.2500  ARI=+0.0005  n_clusters= 863  singletons= 862
+03:10:31 INFO	  t=0.2750  ARI=+0.0005  n_clusters= 863  singletons= 862
+03:10:31 INFO	  t=0.3000  ARI=+0.0005  n_clusters= 863  singletons= 862
+03:10:31 INFO	  t=0.3250  ARI=+0.0010  n_clusters= 861  singletons= 858
+03:10:31 INFO	  t=0.3500  ARI=+0.0015  n_clusters= 859  singletons= 854
+03:10:31 INFO	  t=0.3750  ARI=+0.0019  n_clusters= 856  singletons= 848
+03:10:31 INFO	  t=0.4000  ARI=+0.0029  n_clusters= 851  singletons= 838
+03:10:31 INFO	  t=0.4250  ARI=+0.0033  n_clusters= 841  singletons= 820
+03:10:31 INFO	  t=0.4500  ARI=+0.0047  n_clusters= 822  singletons= 784
+03:10:31 INFO	  t=0.4750  ARI=+0.0064  n_clusters= 799  singletons= 743
+03:10:31 INFO	  t=0.5000  ARI=+0.0077  n_clusters= 769  singletons= 688
+03:10:31 INFO	  t=0.5250  ARI=+0.0106  n_clusters= 723  singletons= 606
+03:10:31 INFO	  t=0.5500  ARI=+0.0120  n_clusters= 676  singletons= 524
+03:10:31 INFO	  t=0.5750  ARI=+0.0152  n_clusters= 615  singletons= 428
+03:10:31 INFO	  t=0.6000  ARI=+0.0174  n_clusters= 542  singletons= 335
+03:10:31 INFO	  t=0.6250  ARI=+0.0221  n_clusters= 482  singletons= 253
+03:10:31 INFO	  t=0.6500  ARI=+0.0247  n_clusters= 415  singletons= 179
+03:10:31 INFO	  t=0.6750  ARI=+0.0269  n_clusters= 354  singletons= 122
+03:10:31 INFO	  t=0.7000  ARI=+0.0266  n_clusters= 293  singletons=  85
+03:10:31 INFO	  t=0.7250  ARI=+0.0266  n_clusters= 238  singletons=  51
+03:10:31 INFO	  t=0.7500  ARI=+0.0370  n_clusters= 187  singletons=  26
+03:10:31 INFO	  t=0.7750  ARI=+0.0372  n_clusters= 146  singletons=  14 <- chosen
+03:10:31 INFO	  t=0.8000  ARI=+0.0289  n_clusters= 114  singletons=   4
+03:10:31 INFO	  t=0.8250  ARI=+0.0270  n_clusters=  86  singletons=   2
+03:10:31 INFO	  t=0.8500  ARI=+0.0295  n_clusters=  62  singletons=   0
+03:10:31 INFO	  t=0.8750  ARI=+0.0248  n_clusters=  38  singletons=   0
+03:10:31 INFO	  t=0.9000  ARI=+0.0151  n_clusters=  20  singletons=   0
+03:10:31 INFO	BEST: t=0.7750  val_ARI=+0.0372
+03:10:31 INFO	
+03:10:31 INFO	======================================================================
+03:10:31 INFO	Cluster TexasHornedLizard test
+03:10:31 INFO	======================================================================
+03:10:31 INFO	texas sim: mean=0.3881  max=0.9086  p95=0.5703  p99=0.6433
+03:10:31 INFO	Texas-side sweep around chosen threshold:
+03:10:31 INFO	  t=0.6750  n_clusters=  8  singletons=  1  max_size=256
+03:10:31 INFO	  t=0.6950  n_clusters=  6  singletons=  1  max_size=258
+03:10:31 INFO	  t=0.7150  n_clusters=  3  singletons=  0  max_size=270
+03:10:31 INFO	  t=0.7350  n_clusters=  2  singletons=  0  max_size=272
+03:10:31 INFO	  t=0.7550  n_clusters=  2  singletons=  0  max_size=272
+03:10:31 INFO	  t=0.7750  n_clusters=  1  singletons=  0  max_size=274 <- chosen
+03:10:31 INFO	  t=0.7950  n_clusters=  1  singletons=  0  max_size=274
+03:10:31 INFO	  t=0.8150  n_clusters=  1  singletons=  0  max_size=274
+03:10:31 INFO	  t=0.8350  n_clusters=  1  singletons=  0  max_size=274
+03:10:31 INFO	  t=0.8550  n_clusters=  1  singletons=  0  max_size=274
+03:10:31 INFO	  t=0.8750  n_clusters=  1  singletons=  0  max_size=274
+03:10:31 INFO	[start]    agglomerative clustering at t=0.7750
+03:10:31 INFO	[done]     agglomerative clustering at t=0.7750 in 0.0s
+03:10:31 INFO	final lizard clustering: t=0.7750  n_clusters=1  singletons=0  max_cluster_size=274
+03:10:31 INFO	wrote /home/prouser1/Downloads/AnimalCLEF/pipeline_v5/submission/stage8e_lizard_clusters.csv  (274 rows)
+03:10:31 INFO	wrote diagnostics to /home/prouser1/Downloads/AnimalCLEF/pipeline_v5/submission/stage8e_lizard_clusters_diag.json
+03:10:31 INFO	Stage 8e complete.

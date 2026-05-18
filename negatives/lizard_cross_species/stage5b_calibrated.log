@@ -1,0 +1,87 @@
+15:02:59 INFO	lizards: 274 images from subset_lizard_query.csv
+15:02:59 INFO	loaded miew_lizards: shape=(274, 2152)  path=miew_test_lizards.npy
+15:02:59 INFO	[start]    extract MegaDescriptor for lizards
+15:03:00 INFO	[start]    load MegaDescriptor
+15:03:03 INFO	Loading pretrained weights from Hugging Face hub (BVRA/MegaDescriptor-L-384)
+15:03:05 INFO	[done]     load MegaDescriptor in 5.4s
+15:03:05 INFO	extracting megadesc on 274 lizard images, batch=32
+15:03:07 INFO	  megadesc batch 0..32/274
+15:03:15 INFO	  megadesc batch 128..160/274
+15:03:22 INFO	  megadesc batch 256..274/274
+15:03:22 INFO	[saved]    megadesc_lizard_test.npy  shape=(274, 1536)  dtype=float32  (1.7 MB)
+15:03:22 INFO	  megadesc_lizards: shape=(274, 1536)
+15:03:22 INFO	[done]     extract MegaDescriptor for lizards in 23.6s
+15:03:22 INFO	[start]    extract DINOv2 for lizards
+15:03:22 INFO	[start]    load DINOv2-large
+/home/prouser1/miniforge3/envs/animalclef_v4/lib/python3.10/site-packages/huggingface_hub/file_download.py:949: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+15:03:23 INFO	[done]     load DINOv2-large in 1.0s
+15:03:23 INFO	extracting dinov2 on 274 lizard images, batch=16, size=518
+15:03:26 INFO	  dinov2 batch 0..16/274
+15:03:35 INFO	  dinov2 batch 64..80/274
+15:03:44 INFO	  dinov2 batch 128..144/274
+15:03:52 INFO	  dinov2 batch 192..208/274
+15:04:01 INFO	  dinov2 batch 256..272/274
+15:04:01 INFO	[saved]    dinov2_lizard_test.npy  shape=(274, 1024)  dtype=float32  (1.1 MB)
+15:04:01 INFO	  dinov2_lizards: shape=(274, 1024)
+15:04:01 INFO	[done]     extract DINOv2 for lizards in 38.8s
+15:04:01 INFO	reusing stage5a t_match_turtle=0.4500
+15:04:01 INFO	lizard fusion weights:    {'miew': 0.4, 'megadesc': 0.35, 'dinov2': 0.25}
+15:04:01 INFO	turtle-DB fusion weights: {'miew': 0.4, 'megadesc': 0.35, 'arcface': 0.25}
+15:04:01 INFO	[start]    compute lizard fused (274 x 274) similarity
+15:04:01 INFO	sim_liz: shape=(274, 274)  mean=0.5457  max=0.9278  p95=0.6593  p99=0.7010
+15:04:01 INFO	[done]     compute lizard fused (274 x 274) similarity in 0.0s
+15:04:01 INFO	[saved]    stage5b_lizard_calibrated_sim.npy  shape=(274, 274)  dtype=float32  (0.3 MB)
+15:04:01 INFO	[start]    load turtle-DB embeddings + sample fused similarity
+15:04:01 INFO	loaded miew_db: shape=(8729, 2152)  path=miew_db_turtles.npy
+15:04:01 INFO	loaded megadesc_db: shape=(8729, 1536)  path=megadesc_db_turtles.npy
+15:04:01 INFO	loaded arcface_db: shape=(8729, 1536)  path=stage2c_arcface_db_turtles.npy
+15:04:01 INFO	  sampled 50000 unique-pair indices from turtle DB (N=8729)
+15:04:03 INFO	[done]     load turtle-DB embeddings + sample fused similarity in 1.8s
+15:04:03 INFO	[start]    percentile-match calibration
+15:04:03 INFO	  t_match_turtle=0.4500
+15:04:03 INFO	  turtle-DB fused sim distribution (n=50000):
+15:04:03 INFO	    min=0.0000  max=0.9684  mean=0.1038
+15:04:03 INFO	    p50=0.0960
+15:04:03 INFO	    p75=0.1346
+15:04:03 INFO	    p90=0.1764
+15:04:03 INFO	    p95=0.2029
+15:04:03 INFO	    p99=0.2636
+15:04:03 INFO	    p99.5=0.3419
+15:04:03 INFO	    p99.9=0.9135
+15:04:03 INFO	  percentile of t_match_turtle in turtle-DB sim: 99.5740%
+15:04:03 INFO	  lizard fused sim distribution (n=37401):
+15:04:03 INFO	    min=0.2917  max=0.9278  mean=0.5477
+15:04:03 INFO	    p50=0.5489
+15:04:03 INFO	    p75=0.5959
+15:04:03 INFO	    p90=0.6353
+15:04:03 INFO	    p95=0.6594
+15:04:03 INFO	    p99=0.7010
+15:04:03 INFO	    p99.5=0.7165
+15:04:03 INFO	    p99.9=0.7498
+15:04:03 INFO	  applying percentile p*=99.5740% to lizard sim -> t_lizard=0.7213
+15:04:03 INFO	[done]     percentile-match calibration in 0.0s
+15:04:03 INFO	
+15:04:03 INFO	--- calibration result ---
+15:04:03 INFO	  turtle t_match    = 0.4500
+15:04:03 INFO	  percentile in DB  = 99.5740%
+15:04:03 INFO	  lizard t_lizard   = 0.7213
+15:04:03 INFO	  rationale: pairs below t_match in turtle-DB sim should correspond to non-matches; we apply the same non-match fraction to the lizard distribution to pick a comparable cluster threshold.
+15:04:03 INFO	threshold sweep around t_liz:
+15:04:03 INFO	  t=0.6213  n_clusters=  1  singletons=  0  max_size=274
+15:04:03 INFO	  t=0.6413  n_clusters=  1  singletons=  0  max_size=274
+15:04:03 INFO	  t=0.6613  n_clusters=  1  singletons=  0  max_size=274
+15:04:03 INFO	  t=0.6813  n_clusters=  1  singletons=  0  max_size=274
+15:04:03 INFO	  t=0.7013  n_clusters=  1  singletons=  0  max_size=274
+15:04:03 INFO	  t=0.7213  n_clusters=  1  singletons=  0  max_size=274
+15:04:03 INFO	  t=0.7413  n_clusters=  1  singletons=  0  max_size=274
+15:04:03 INFO	  t=0.7613  n_clusters=  1  singletons=  0  max_size=274
+15:04:03 INFO	  t=0.7813  n_clusters=  1  singletons=  0  max_size=274
+15:04:03 INFO	  t=0.8013  n_clusters=  1  singletons=  0  max_size=274
+15:04:03 INFO	  t=0.8213  n_clusters=  1  singletons=  0  max_size=274
+15:04:03 INFO	[start]    agglomerative clustering at t_liz
+15:04:03 INFO	final clustering: t=0.7213  n_clusters=1  singletons=0  max_cluster_size=274
+15:04:03 INFO	[done]     agglomerative clustering at t_liz in 0.0s
+15:04:03 INFO	wrote /home/prouser1/Downloads/AnimalCLEF/pipeline_v5/submission/stage5b_lizard_calibrated.csv  (274 rows)
+15:04:03 INFO	wrote diagnostics to /home/prouser1/Downloads/AnimalCLEF/pipeline_v5/submission/stage5b_lizard_calibrated_diag.json
+15:04:03 INFO	stage5b_lizard_calibrated complete.

@@ -1,0 +1,25 @@
+14:54:14 INFO	[start]    load lizard MIEW embeddings
+14:54:14 INFO	miew_test_lizards: shape=(274, 2152)
+14:54:14 INFO	[done]     load lizard MIEW embeddings in 0.0s
+14:54:14 INFO	lizards: 274 images
+14:54:14 INFO	[start]    compute lizard x lizard cosine similarity
+14:54:14 INFO	sim: mean=0.4909  max=0.9123  p95=0.6217  p99=0.6650
+14:54:14 INFO	[done]     compute lizard x lizard cosine similarity in 0.0s
+14:54:14 INFO	[saved]    stage5b_lizard_sim.npy  shape=(274, 274)  dtype=float32  (0.3 MB)
+14:54:14 INFO	selecting clustering threshold
+14:54:14 INFO	  reusing stage5a t_cluster=0.625
+14:54:14 INFO	threshold sweep diagnostics:
+14:54:14 INFO	  t=0.300  n_clusters=240  singletons=213  max_size=4
+14:54:14 INFO	  t=0.350  n_clusters=178  singletons=128  max_size=11
+14:54:14 INFO	  t=0.400  n_clusters=102  singletons= 61  max_size=37
+14:54:14 INFO	  t=0.500  n_clusters= 22  singletons= 10  max_size=145
+14:54:14 INFO	  t=0.550  n_clusters=  9  singletons=  2  max_size=232
+14:54:14 INFO	  t=0.575  n_clusters=  5  singletons=  2  max_size=268
+14:54:14 INFO	  t=0.600  n_clusters=  2  singletons=  0  max_size=272
+14:54:14 INFO	  t=0.625  n_clusters=  2  singletons=  0  max_size=272
+14:54:14 INFO	  t=0.675  n_clusters=  1  singletons=  0  max_size=274
+14:54:14 WARNING	MIEW not calibrated for lizards; turtle t_cluster merges 272/274 images into 2 clusters. Falling back to singletons.
+14:54:14 INFO	  singletons: 274 clusters from 274 images
+14:54:14 INFO	wrote /home/prouser1/Downloads/AnimalCLEF/pipeline_v5/submission/stage5b_lizard_clusters.csv  (274 rows)
+14:54:14 INFO	wrote diagnostics to /home/prouser1/Downloads/AnimalCLEF/pipeline_v5/submission/stage5b_lizard_clusters_diag.json
+14:54:14 INFO	stage5b complete.
